@@ -6,6 +6,8 @@ public class Radar : MonoBehaviour
 {
     private Transform currentBomb;
 
+    int damping = 2;
+
 
     private void Start()
     {
@@ -17,12 +19,21 @@ public class Radar : MonoBehaviour
         if (currentBomb != null)
         {
             //AIM
-            Vector3 aimPos = currentBomb.position - transform.position;
-            aimPos.y = 0;
-            aimPos = aimPos.normalized;
+            transform.LookAt(currentBomb);
 
-            float angle = Mathf.Atan2(aimPos.z, aimPos.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, transform.up);
+            //Vector3 lookPos = currentBomb.position - transform.position;
+            //lookPos.y = 0;
+            //Quaternion rotation = Quaternion.LookRotation(lookPos);
+
+            //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+
+
+            //Vector3 aimPos = currentBomb.position - transform.position;
+            //aimPos.y = 0;
+            //aimPos = aimPos.normalized;
+
+            //float angle = Mathf.Atan2(aimPos.z, aimPos.x) * Mathf.Rad2Deg;
+            //transform.rotation = Quaternion.AngleAxis(angle, transform.parent.up);
         }
     }
 }

@@ -150,8 +150,8 @@ public class OVRPlayerController : MonoBehaviour
 	private float buttonRotation = 0f;
 	private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
 	private bool playerControllerEnabled = false;
+    public float zScaling = 1;
 
-    public float zScale = 5f;
 
 	void Start()
 	{
@@ -224,8 +224,8 @@ public class OVRPlayerController : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.E))
 			buttonRotation += RotationRatchet;
 
-        if (OVRInput.GetDown(OVRInput.Button.Three, OVRInput.Controller.Gamepad)
-            || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.Touch))
+        if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.Gamepad)
+            || OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.Touch))
         {
             Jump();
         }
@@ -265,7 +265,7 @@ public class OVRPlayerController : MonoBehaviour
 			InitialPose = null;
 		}
 
-		CameraHeight = CameraRig.centerEyeAnchor.localPosition.y + zScale;
+		CameraHeight = CameraRig.centerEyeAnchor.localPosition.y;
 
 		if (CameraUpdated != null)
 		{
@@ -388,22 +388,10 @@ public class OVRPlayerController : MonoBehaviour
 			moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
 #endif
 
-            Vector2 padAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.Gamepad);
-            Vector2 touchAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.Touch);
+			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
 
-            Vector2 primaryAxis;
-
-            if (Mathf.Abs(padAxis.magnitude) >= Mathf.Abs(touchAxis.magnitude))
-            {
-                primaryAxis = padAxis;
-            }
-            else
-            {
-                primaryAxis = touchAxis;
-            }
-
-            // If speed quantization is enabled, adjust the input to the number of fixed speed steps.
-            if (FixedSpeedSteps > 0)
+			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
+			if (FixedSpeedSteps > 0)
 			{
 				primaryAxis.y = Mathf.Round(primaryAxis.y * FixedSpeedSteps) / FixedSpeedSteps;
 				primaryAxis.x = Mathf.Round(primaryAxis.x * FixedSpeedSteps) / FixedSpeedSteps;
