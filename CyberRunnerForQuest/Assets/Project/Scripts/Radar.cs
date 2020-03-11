@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Radar : MonoBehaviour
 {
-    private Transform currentBomb;
+    private static Transform currentBomb;
 
-    int damping = 2;
+    //int damping = 2;
 
 
-    private void Start()
+    public static void SetCurrentBomb(Transform bomb)
     {
         currentBomb = FindObjectOfType<Bomb>()?.transform;
     }
@@ -34,6 +34,10 @@ public class Radar : MonoBehaviour
 
             //float angle = Mathf.Atan2(aimPos.z, aimPos.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.AngleAxis(angle, transform.parent.up);
+        }
+        else
+        {
+            transform.LookAt(transform.position + Vector3.up);
         }
     }
 }
