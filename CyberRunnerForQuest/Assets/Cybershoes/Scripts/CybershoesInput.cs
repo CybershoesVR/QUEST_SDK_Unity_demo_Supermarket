@@ -11,6 +11,8 @@ namespace Cybershoes
         private static Queue<Quaternion> hmdFWDPreviousFrames = new Queue<Quaternion>();
         private const int pastFrameAmount = 1;
 
+        private static float lastBTUpdateTime = 0;
+
         /// <summary>
         /// Returns the Cybershoes Input rotated relative to the HMD.
         /// </summary>
@@ -25,7 +27,6 @@ namespace Cybershoes
                 cybershoesInputAxisPrevious = cybershoesInputAxis;
                 hmdForwardPrevious = hmdForward; //blickrichtung zum zeitpunkt des empfangs des BT pakets
                 //hmdForwardPrevious = hmdFWDPreviousFrames.Peek();
-                
             }
             else
             {
@@ -33,6 +34,7 @@ namespace Cybershoes
 
                 float diffSinceBTUpdate = hmdForward.eulerAngles.y - hmdForwardPrevious.eulerAngles.y;
                 cybershoesInputAxis = RotateVector(cybershoesInputAxis, diffSinceBTUpdate);
+                lastBTUpdateTime = Time.time;
             }
 
 
@@ -61,6 +63,14 @@ namespace Cybershoes
             vector.y = oldVector.x * sn + oldVector.y * cs;
             return vector;
         }
-    }
 
+        /// <summary>
+        /// Gets the time since the last bluetooth update
+        /// </summary>
+        /// <returns></returns>
+        public static float GetTimeSinceLastBTUpdate()
+        {
+            return Time.time - lastBTUpdateTime;
+        }
+    }
 }

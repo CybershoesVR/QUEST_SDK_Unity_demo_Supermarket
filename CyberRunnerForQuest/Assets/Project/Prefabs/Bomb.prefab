@@ -4705,6 +4705,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9519,6 +9520,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14340,6 +14342,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19161,6 +19164,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19271,6 +19275,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19330,6 +19335,7 @@ MonoBehaviour:
   m_grabPoints:
   - {fileID: 1313504155838224025}
   - {fileID: 5932087179579538602}
+  - {fileID: 6135234491517213499}
   power: 5.5
   detonationTime: 20
   panicTime: 5
@@ -19337,8 +19343,10 @@ MonoBehaviour:
   fuse: {fileID: 2386338273256695551}
   fireParticles: {fileID: 2444412755200277549}
   explosionParticles: {fileID: 1890112124671872025}
+  diffuseCollider: {fileID: 6135234491517213499}
   diffuseClip: {fileID: 8300000, guid: bfa8d6faf5afc5a4496cd0fee70582e3, type: 3}
   explosionClip: {fileID: 8300000, guid: 7eb4d74d9df0165489de5574d734b493, type: 3}
+  panicTrack: {fileID: 8300000, guid: 2f6e083ff356b2d45be5eb006dcfc879, type: 3}
 --- !u!82 &1122960573360178013
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19349,7 +19357,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f91f19d4acc8b874da545b08873190dc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5e23764f1ce9afe4b9a345235f36623c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -19472,6 +19480,7 @@ GameObject:
   - component: {fileID: 2386338273256695551}
   - component: {fileID: 2647295124423411394}
   - component: {fileID: 6523414572169153043}
+  - component: {fileID: 6135234491517213499}
   m_Layer: 9
   m_Name: Fuse
   m_TagString: Untagged
@@ -19516,6 +19525,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19540,6 +19550,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6135234491517213499
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806732468649490876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02723955, y: 0.02723955, z: 0.0570713}
+  m_Center: {x: -0.008705692, y: 0.0000253974, z: 0.30403495}
 --- !u!1 &6140886228453988188
 GameObject:
   m_ObjectHideFlags: 0
@@ -19594,6 +19617,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24328,6 +24352,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29084,6 +29109,7 @@ ParticleSystemRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

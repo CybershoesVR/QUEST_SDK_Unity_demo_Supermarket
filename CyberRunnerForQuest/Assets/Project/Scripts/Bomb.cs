@@ -12,8 +12,13 @@ public class Bomb : OVRGrabbable
     [SerializeField] ParticleSystem fireParticles;
     [SerializeField] ParticleSystem explosionParticles;
     [Space]
+    [SerializeField] Collider diffuseCollider;
+    [Space]
     [SerializeField] AudioClip diffuseClip;
     [SerializeField] AudioClip explosionClip;
+    [Space]
+    [SerializeField] AudioClip panicTrack;
+    [SerializeField] float panicVolume = 0.3f;
 
     private float detonationStartTime;
     private bool ticking = true;
@@ -43,58 +48,69 @@ public class Bomb : OVRGrabbable
                 fuse.localPosition = fuse.localPosition + (Vector3.forward * fuseEndPosY * (Time.fixedDeltaTime / detonationTime));
             }
 
-            if (Time.time - detonationStartTime >= detonationTime)
+            if (panic || Time.time - detonationStartTime >= detonationTime - panicTime)
             {
-                ticking = false;
-
-                Collider[] cols = GetComponents<Collider>();
-
-                for (int i = 0; i < cols.Length; i++)
+                if (!panic)
                 {
-                    cols[i].enabled = false;
+                    panic = true;
+                    MusicPlayer.Instance.ChangeTrack(panicTrack,panicVolume);
                 }
 
-                GetComponent<Rigidbody>().isKinematic = true;
-
-                src.Stop();
-                src.loop = false;
-                src.clip = explosionClip;
-                src.Play();
-
-                for (int i = 0; i < rends.Length; i++)
+                if (Time.time - detonationStartTime >= detonationTime)
                 {
-                    rends[i].enabled = false;
-                }
+                    ticking = false;
+                    panic = false;
 
-                explosionParticles.Play();
+                    Collider[] cols = GetComponents<Collider>();
 
-                Collider[] hits = Physics.OverlapSphere(transform.position, 5);
-
-                for (int i = 0; i < hits.Length; i++)
-                {
-                    Rigidbody rb = hits[i].GetComponent<Rigidbody>();
-
-                    if (rb != null)
+                    for (int i = 0; i < cols.Length; i++)
                     {
-                        rb.AddForce((hits[i].transform.position - transform.position)*power, ForceMode.Impulse);
+                        cols[i].enabled = false;
                     }
+
+                    GetComponent<Rigidbody>().isKinematic = true;
+
+                    src.Stop();
+                    src.loop = false;
+                    src.clip = explosionClip;
+                    src.Play();
+
+                    for (int i = 0; i < rends.Length; i++)
+                    {
+                        rends[i].enabled = false;
+                    }
+
+                    explosionParticles.Play();
+
+                    Collider[] hits = Physics.OverlapSphere(transform.position, 5);
+
+                    for (int i = 0; i < hits.Length; i++)
+                    {
+                        Rigidbody rb = hits[i].GetComponent<Rigidbody>();
+
+                        if (rb != null)
+                        {
+                            rb.AddForce((hits[i].transform.position - transform.position) * power, ForceMode.Impulse);
+                        }
+                    }
+
+                    spawner.SpawnNext();
+
+                    Destroy(gameObject, 2);
                 }
-
-                spawner.SpawnNext();
-
-                Destroy(gameObject,2);
             }
-            else if (!panic && Time.time - detonationStartTime >= detonationTime - panicTime)
-            {
-                panic = true;
-            }
+            
         }
     }
 
     public override void GrabBegin(OVRGrabber hand, Collider grabPoint)
     {
         base.GrabBegin(hand, grabPoint);
-        Defuse();
+
+        if (grabPoint == diffuseCollider)
+        {
+            Defuse();
+        }
     }
 
     public void Defuse()
@@ -109,6 +125,14 @@ public class Bomb : OVRGrabbable
             src.loop = false;
             src.clip = diffuseClip;
             src.Play();
+
+            FindObjectOfType<SupermarketDemo.PlayerController>().AddDiffusedBomb();
+
+            if (panic)
+            {
+                panic = false;
+                MusicPlayer.Instance.ResetTrack();
+            }
         }
     }
 }

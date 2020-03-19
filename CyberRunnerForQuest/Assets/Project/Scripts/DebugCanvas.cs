@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Cybershoes;
 
 public class DebugCanvas : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI xText;
     [SerializeField] TextMeshProUGUI yText;
     [SerializeField] TextMeshProUGUI jumpText;
+    [SerializeField] TextMeshProUGUI lastBTUpdateText;
     [SerializeField] OVRHand leftHand;
     [SerializeField] OVRHand rightHand;
     [SerializeField] TextMeshProUGUI pinchText;
@@ -19,6 +21,9 @@ public class DebugCanvas : MonoBehaviour
 
         SetX(input.x);
         SetY(input.y);
+
+        lastBTUpdateText.text = $"BT Timeout: {CybershoesInput.GetTimeSinceLastBTUpdate():0.000}";
+
         //SetJump(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.Gamepad));
         //float strengthLeft = GetLeftGrip();
         //float strengthRight = GetRightGrip();

@@ -156,6 +156,9 @@ namespace SupermarketDemo
         private bool ReadyToSnapTurn; // Set to true when a snap turn has occurred, code requires one frame of centered thumbstick to enable another snap turn.
         private bool playerControllerEnabled = false;
 
+        [Space]
+        [SerializeField] TextMeshProUGUI diffusedBombsText;
+        private int diffusedBombs = 0;
         public OVRHand rightHand;
         public bool handMovement = false;
         private HeightScaler hScaler;
@@ -614,6 +617,11 @@ namespace SupermarketDemo
                 transform.rotation = Quaternion.Euler(euler);
             }
         }
-    }
 
+        public void AddDiffusedBomb()
+        {
+            diffusedBombs++;
+            diffusedBombsText.text = diffusedBombs.ToString();
+        }
+    }
 }
