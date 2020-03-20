@@ -12529,7 +12529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &528874926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54166,6 +54166,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 314614689, guid: d53299969c48d1c48810a429aa877079, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 314614689, guid: d53299969c48d1c48810a429aa877079, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 314614689, guid: d53299969c48d1c48810a429aa877079, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.915
+      objectReference: {fileID: 0}
     - target: {fileID: 1168666100, guid: d53299969c48d1c48810a429aa877079, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -54180,7 +54192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2032631404, guid: d53299969c48d1c48810a429aa877079, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2032631409, guid: d53299969c48d1c48810a429aa877079, type: 3}
       propertyPath: lastBTUpdateText

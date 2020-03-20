@@ -12,6 +12,7 @@ namespace Cybershoes
         private const int pastFrameAmount = 1;
 
         private static float lastBTUpdateTime = 0;
+        public static float lastBTupdateTook;
 
         /// <summary>
         /// Returns the Cybershoes Input rotated relative to the HMD.
@@ -22,11 +23,17 @@ namespace Cybershoes
         {
             Vector2 cybershoesInputAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.Gamepad);
 
-            if (cybershoesInputAxis.x == 0 || !Mathf.Approximately(cybershoesInputAxis.magnitude, cybershoesInputAxisPrevious.magnitude))
+            if(!Mathf.Approximately(cybershoesInputAxis.magnitude, cybershoesInputAxisPrevious.magnitude))
+            {
+                lastBTupdateTook = Time.time - lastBTUpdateTime;
+                lastBTUpdateTime = Time.time; //reset
+            }
+
+            if (Mathf.Approximately(cybershoesInputAxis.x, 0) || !Mathf.Approximately(cybershoesInputAxis.magnitude, cybershoesInputAxisPrevious.magnitude))
             {
                 cybershoesInputAxisPrevious = cybershoesInputAxis;
                 hmdForwardPrevious = hmdForward; //blickrichtung zum zeitpunkt des empfangs des BT pakets
-                //hmdForwardPrevious = hmdFWDPreviousFrames.Peek();
+                                                 //hmdForwardPrevious = hmdFWDPreviousFrames.Peek();
             }
             else
             {
@@ -34,7 +41,6 @@ namespace Cybershoes
 
                 float diffSinceBTUpdate = hmdForward.eulerAngles.y - hmdForwardPrevious.eulerAngles.y;
                 cybershoesInputAxis = RotateVector(cybershoesInputAxis, diffSinceBTUpdate);
-                lastBTUpdateTime = Time.time;
             }
 
 

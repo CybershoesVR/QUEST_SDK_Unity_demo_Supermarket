@@ -14,6 +14,11 @@ public class DebugCanvas : MonoBehaviour
     [SerializeField] OVRHand rightHand;
     [SerializeField] TextMeshProUGUI pinchText;
 
+    /* //FOR UPDATE DETECTION
+    float counter;
+    float counterMax = 100;
+    bool lastInput = false;
+    */
 
     private void Update()
     {
@@ -22,7 +27,26 @@ public class DebugCanvas : MonoBehaviour
         SetX(input.x);
         SetY(input.y);
 
-        lastBTUpdateText.text = $"BT Timeout: {CybershoesInput.GetTimeSinceLastBTUpdate():0.000}";
+        lastBTUpdateText.text = $"BT Timeout: {CybershoesInput.lastBTupdateTook:0.000}";
+
+        /*  //FOR UPDATE DETECTION
+        if (OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.Gamepad) != lastInput)
+        {
+            if (counter < counterMax)
+            {
+                counter++;
+            }
+            else
+            {
+                counter = 0;
+            }
+        }
+        jumpText.text = $"Counter: {counter:0}";
+        lastInput = OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.Gamepad);
+
+        //For displaying button TWO
+        jumpText.text = $"button2: {OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.Gamepad)}";
+        */
 
         //SetJump(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.Gamepad));
         //float strengthLeft = GetLeftGrip();
