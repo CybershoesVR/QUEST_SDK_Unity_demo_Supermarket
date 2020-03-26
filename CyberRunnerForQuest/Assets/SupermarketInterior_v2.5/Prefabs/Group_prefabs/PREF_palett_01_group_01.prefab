@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 489688}
   - component: {fileID: 3356648}
   - component: {fileID: 2346956}
+  - component: {fileID: 7179234880469601685}
   m_Layer: 0
   m_Name: mesh_palett_01
   m_TagString: Untagged
@@ -54,6 +55,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -65,6 +67,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 1
@@ -77,6 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7179234880469601685
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110226}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3698206, y: 0.19685665, z: 1.762619}
+  m_Center: {x: 0, y: 0.098428324, z: 0}
 --- !u!1 &127246
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +104,7 @@ GameObject:
   - component: {fileID: 459040}
   - component: {fileID: 3301064}
   - component: {fileID: 2359964}
+  - component: {fileID: 1558166035631333196}
   m_Layer: 0
   m_Name: mesh_palett_01 (1)
   m_TagString: Untagged
@@ -131,6 +148,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -142,6 +160,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 1
@@ -154,6 +173,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1558166035631333196
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3698205, y: 0.19685665, z: 1.7626189}
+  m_Center: {x: 0, y: 0.098428324, z: 0}
 --- !u!1 &138900
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +197,7 @@ GameObject:
   - component: {fileID: 487162}
   - component: {fileID: 3306262}
   - component: {fileID: 2351592}
+  - component: {fileID: 3611481792838287038}
   m_Layer: 0
   m_Name: mesh_palett_01 (3)
   m_TagString: Untagged
@@ -208,6 +241,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -219,6 +253,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 1
@@ -231,6 +266,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3611481792838287038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3698211, y: 0.1968567, z: 1.7626196}
+  m_Center: {x: -0.0000000039781853, y: 0.09842835, z: 0.0000000029333955}
 --- !u!1 &150874
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +290,7 @@ GameObject:
   - component: {fileID: 480084}
   - component: {fileID: 3316222}
   - component: {fileID: 2346078}
+  - component: {fileID: 1373234988905337507}
   m_Layer: 0
   m_Name: mesh_palett_01 (2)
   m_TagString: Untagged
@@ -285,6 +334,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -296,6 +346,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 1
@@ -308,6 +359,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1373234988905337507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3698207, y: 0.19685693, z: 1.7626196}
+  m_Center: {x: -0.0000000066475736, y: 0.09842835, z: 0.000000005866788}
 --- !u!1 &175206
 GameObject:
   m_ObjectHideFlags: 0

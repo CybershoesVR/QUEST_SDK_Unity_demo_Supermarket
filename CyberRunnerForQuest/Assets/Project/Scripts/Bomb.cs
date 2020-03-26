@@ -94,7 +94,7 @@ public class Bomb : OVRGrabbable
                         }
                     }
 
-                    spawner.SpawnNext();
+                    FindObjectOfType<SupermarketDemo.PlayerController>().GameOver();
 
                     Destroy(gameObject, 2);
                 }

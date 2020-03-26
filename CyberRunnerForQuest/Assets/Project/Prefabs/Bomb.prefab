@@ -19335,7 +19335,6 @@ MonoBehaviour:
   m_grabPoints:
   - {fileID: 1313504155838224025}
   - {fileID: 5932087179579538602}
-  - {fileID: 6135234491517213499}
   power: 5.5
   detonationTime: 20
   panicTime: 5
@@ -19343,10 +19342,11 @@ MonoBehaviour:
   fuse: {fileID: 2386338273256695551}
   fireParticles: {fileID: 2444412755200277549}
   explosionParticles: {fileID: 1890112124671872025}
-  diffuseCollider: {fileID: 6135234491517213499}
+  diffuseCollider: {fileID: 5932087179579538602}
   diffuseClip: {fileID: 8300000, guid: bfa8d6faf5afc5a4496cd0fee70582e3, type: 3}
   explosionClip: {fileID: 8300000, guid: 7eb4d74d9df0165489de5574d734b493, type: 3}
   panicTrack: {fileID: 8300000, guid: 2f6e083ff356b2d45be5eb006dcfc879, type: 3}
+  panicVolume: 0.3
 --- !u!82 &1122960573360178013
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19467,7 +19467,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 0.05, z: 0.04}
+  m_Size: {x: 0.04, y: 0.04, z: 0.15}
   m_Center: {x: 0, y: 0, z: 0.26}
 --- !u!1 &4806732468649490876
 GameObject:
@@ -19480,7 +19480,6 @@ GameObject:
   - component: {fileID: 2386338273256695551}
   - component: {fileID: 2647295124423411394}
   - component: {fileID: 6523414572169153043}
-  - component: {fileID: 6135234491517213499}
   m_Layer: 9
   m_Name: Fuse
   m_TagString: Untagged
@@ -19550,19 +19549,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6135234491517213499
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4806732468649490876}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.02723955, y: 0.02723955, z: 0.0570713}
-  m_Center: {x: -0.008705692, y: 0.0000253974, z: 0.30403495}
 --- !u!1 &6140886228453988188
 GameObject:
   m_ObjectHideFlags: 0

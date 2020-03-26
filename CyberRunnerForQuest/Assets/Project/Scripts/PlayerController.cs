@@ -157,6 +157,7 @@ namespace SupermarketDemo
         private bool playerControllerEnabled = false;
 
         [Space]
+        [SerializeField] GameObject gameOverScreen;
         [SerializeField] TextMeshProUGUI diffusedBombsText;
         private int diffusedBombs = 0;
         public OVRHand rightHand;
@@ -622,6 +623,11 @@ namespace SupermarketDemo
         {
             diffusedBombs++;
             diffusedBombsText.text = diffusedBombs.ToString();
+        }
+
+        public void GameOver()
+        {
+            gameOverScreen.SetActive(true);
         }
     }
 }
