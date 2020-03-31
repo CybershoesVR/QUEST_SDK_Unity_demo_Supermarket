@@ -19336,7 +19336,7 @@ MonoBehaviour:
   - {fileID: 1313504155838224025}
   - {fileID: 5932087179579538602}
   power: 5.5
-  detonationTime: 45
+  detonationTime: 35
   panicTime: 15
   fuseEndPosY: -0.055
   fuse: {fileID: 2386338273256695551}
