@@ -12,8 +12,6 @@ public class Bomb : OVRGrabbable
     [SerializeField] ParticleSystem fireParticles;
     [SerializeField] ParticleSystem explosionParticles;
     [Space]
-    [SerializeField] Collider diffuseCollider;
-    [Space]
     [SerializeField] AudioClip diffuseClip;
     [SerializeField] AudioClip explosionClip;
     [Space]
@@ -53,7 +51,7 @@ public class Bomb : OVRGrabbable
                 if (!panic)
                 {
                     panic = true;
-                    MusicPlayer.Instance.ChangeTrack(panicTrack,panicVolume);
+                    MusicPlayer.Instance.StartSubTrack(panicTrack,panicVolume);
                 }
 
                 if (Time.time - detonationStartTime >= detonationTime)
@@ -74,6 +72,8 @@ public class Bomb : OVRGrabbable
                     src.loop = false;
                     src.clip = explosionClip;
                     src.Play();
+
+                    MusicPlayer.Instance.StopSubTrack();
 
                     for (int i = 0; i < rends.Length; i++)
                     {
@@ -107,10 +107,7 @@ public class Bomb : OVRGrabbable
     {
         base.GrabBegin(hand, grabPoint);
 
-        if (grabPoint == diffuseCollider)
-        {
-            Defuse();
-        }
+        Defuse();
     }
 
     public void Defuse()
@@ -131,7 +128,7 @@ public class Bomb : OVRGrabbable
             if (panic)
             {
                 panic = false;
-                MusicPlayer.Instance.ResetTrack();
+                MusicPlayer.Instance.StopSubTrack();
             }
         }
     }

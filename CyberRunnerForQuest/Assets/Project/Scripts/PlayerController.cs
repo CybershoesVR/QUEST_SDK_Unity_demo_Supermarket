@@ -14,9 +14,10 @@ permissions and limitations under the License.
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Cybershoes;
-
+using System.Collections;
 
 namespace SupermarketDemo
 {
@@ -159,10 +160,11 @@ namespace SupermarketDemo
         [Space]
         [SerializeField] GameObject gameOverScreen;
         [SerializeField] TextMeshProUGUI diffusedBombsText;
-        private int diffusedBombs = 0;
         public OVRHand rightHand;
         public bool handMovement = false;
         private HeightScaler hScaler;
+
+        private OVRScreenFade screenFade;
 
 
         void Start()
@@ -184,7 +186,11 @@ namespace SupermarketDemo
             }
 
             hScaler = GetComponent<HeightScaler>();
-            Invoke("StartHeightScaler", 2);
+            Invoke("StartHeightScaler", 1);
+
+            GameManager.Instance.diffusedBombs = 0;
+
+            MusicPlayer.Instance.ResetTrack();
         }
 
 
@@ -193,7 +199,6 @@ namespace SupermarketDemo
         {
             hScaler.InitHeightScaler(CameraRig.centerEyeAnchor);
         }
-
 
         void Awake()
         {
@@ -214,6 +219,8 @@ namespace SupermarketDemo
                 CameraRig = CameraRigs[0];
 
             InitialYRotation = transform.rotation.eulerAngles.y;
+
+            screenFade = CameraRig.centerEyeAnchor.GetComponent<OVRScreenFade>();
         }
 
         void OnEnable()
@@ -621,13 +628,41 @@ namespace SupermarketDemo
 
         public void AddDiffusedBomb()
         {
-            diffusedBombs++;
-            diffusedBombsText.text = diffusedBombs.ToString();
+            GameManager.Instance.diffusedBombs++;
+            diffusedBombsText.text = GameManager.Instance.diffusedBombs.ToString();
         }
 
         public void GameOver()
         {
-            gameOverScreen.SetActive(true);
+            //gameOverScreen.SetActive(true);
+
+            StartCoroutine(FadeOut(1, 5));
+        }
+
+        IEnumerator FadeOut(float startDelay, float fadeTime)
+        {
+            yield return new WaitForSeconds(startDelay);
+
+            OVRScreenFade screenFade = CameraRig.centerEyeAnchor.GetComponent<OVRScreenFade>();
+            screenFade.fadeTime = fadeTime;
+            screenFade.FadeOut();
+
+            yield return new WaitForSeconds(fadeTime);
+
+            MusicPlayer.Instance.StopTrack();
+            MusicPlayer.Instance.StopSubTrack();
+
+            SceneManager.LoadScene(2);
+
+            //DEBUG
+            //if (SceneManager.GetActiveScene().buildIndex == 1)
+            //{
+            //    SceneManager.LoadScene(2);
+            //}
+            //else if (SceneManager.GetActiveScene().buildIndex == 2)
+            //{
+            //    SceneManager.LoadScene(1);
+            //}
         }
     }
 }

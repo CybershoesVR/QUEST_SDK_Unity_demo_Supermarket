@@ -11,7 +11,7 @@ public class HandTrackingGrabber : OVRGrabber
     //[SerializeField] float thumbTreshold = 0.4f;
     //[SerializeField] Renderer grabVisualizer;
     [SerializeField] bool isRight = true;
-    [SerializeField] TextMeshProUGUI grabEndVelText;
+    //[SerializeField] TextMeshProUGUI grabEndVelText;
 
     //[SerializeField] Color gripColor;
 
@@ -36,28 +36,9 @@ public class HandTrackingGrabber : OVRGrabber
 
     void CheckIndexPinch()
     {
-        //float[] pinchStrength = new float[4];
-        //pinchStrength[0] = hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
-        //pinchStrength[1] = hand.GetFingerPinchStrength(OVRHand.HandFinger.Middle);
-        //pinchStrength[2] = hand.GetFingerPinchStrength(OVRHand.HandFinger.Ring);
-        //pinchStrength[3] = hand.GetFingerPinchStrength(OVRHand.HandFinger.Pinky);
+        float pinchStrength = hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
 
-        float[] pinchStrength = new float[1];
-        pinchStrength[0] = hand.GetFingerPinchStrength(OVRHand.HandFinger.Index);
-
-        //float thumbStrength = hand.GetFingerPinchStrength(OVRHand.HandFinger.Thumb);
-
-        float pinchMax = 0;
-
-        for (int i = 0; i < pinchStrength.Length; i++)
-        {
-            if (pinchStrength[i] > pinchMax)
-            {
-                pinchMax = pinchStrength[i];
-            }
-        }
-
-        bool isGrabbing = pinchMax > pinchTreshold && hand.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High;
+        bool isGrabbing = pinchStrength > pinchTreshold && hand.GetFingerConfidence(OVRHand.HandFinger.Index) == OVRHand.TrackingConfidence.High;
 
         //if (isGrabbing)
         //{
@@ -72,7 +53,8 @@ public class HandTrackingGrabber : OVRGrabber
         {
             GrabBegin();
         }
-        else if (m_grabbedObj && !isGrabbing)
+
+        if (m_grabbedObj && !isGrabbing)
         {
             GrabEnd();
         }
@@ -85,8 +67,8 @@ public class HandTrackingGrabber : OVRGrabber
             Vector3 linearVelocity = (transform.position - m_lastPos) / Time.fixedDeltaTime;
             Vector3 angularVelocity = (transform.eulerAngles - m_lastRot.eulerAngles) / Time.fixedDeltaTime;
 
-            string rightText = isRight ? "R" : "L";
-            grabEndVelText.text = $"{rightText}: {linearVelocity}";
+            //string rightText = isRight ? "R" : "L";
+            //grabEndVelText.text = $"{rightText}: {linearVelocity}";
 
             GrabbableRelease(linearVelocity, angularVelocity);
         }

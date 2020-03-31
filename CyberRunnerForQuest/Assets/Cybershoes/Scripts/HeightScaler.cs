@@ -100,7 +100,7 @@ namespace Cybershoes
         {
             if (hmdTransform == null)
             {
-                Debug.LogError("Cannot calculate the Seated Offset becasue it has not been initialized!  Use InitSeatedOffset()!");
+                Debug.Log("Cannot calculate the Seated Offset becasue it has not been initialized!");
                 return 0;
             }
             else if (hmdTransform.localPosition.y < duckMin)

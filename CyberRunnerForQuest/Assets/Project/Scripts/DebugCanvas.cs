@@ -29,6 +29,8 @@ public class DebugCanvas : MonoBehaviour
 
         lastBTUpdateText.text = $"BT Timeout: {CybershoesInput.lastBTupdateTook:0.000}";
 
+        jumpText.text = $"Pinch R: {rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Index):0.00}";
+
         /*  //FOR UPDATE DETECTION
         if (OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.Gamepad) != lastInput)
         {

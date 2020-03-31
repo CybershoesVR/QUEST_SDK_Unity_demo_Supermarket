@@ -9,6 +9,7 @@ public class MusicPlayer : MonoBehaviour
     private AudioClip defaultTrack;
     private float defaultVolume;
     private AudioSource source;
+    private AudioSource subSource;
 
 
     private void Awake()
@@ -28,6 +29,11 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        subSource = transform.GetChild(0).GetComponent<AudioSource>();
+    }
+
     public void ChangeTrack(AudioClip newTrack,float volume)
     {
         source.Stop();
@@ -42,5 +48,23 @@ public class MusicPlayer : MonoBehaviour
         source.clip = defaultTrack;
         source.volume = defaultVolume;
         source.Play();
+    }
+
+    public void StopTrack()
+    {
+        source.Stop();
+    }
+
+    public void StartSubTrack(AudioClip track, float volume=1)
+    {
+        subSource.Stop();
+        subSource.clip = track;
+        subSource.volume = volume;
+        subSource.Play();
+    }
+
+    public void StopSubTrack()
+    {
+        subSource.Stop();
     }
 }
