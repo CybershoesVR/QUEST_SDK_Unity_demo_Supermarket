@@ -7,50 +7,54 @@ namespace Cybershoes
     public class CybershoesInput
     {
         private static Vector2 cybershoesInputAxisPrevious;
-        private static Quaternion hmdForwardPrevious;
-        private static Queue<Quaternion> hmdFWDPreviousFrames = new Queue<Quaternion>();
-        private const int pastFrameAmount = 1;
+        private static float [] hmdForward_frames = new float[8];    
+        private static float [] timeStamp_frames = new float[8];
+        private static float hmdForward_relevantFrame;
+        private static int framesIndex;
+        private static int minIndex;
 
         private static float lastBTUpdateTime = 0;
         public static float lastBTupdateTook;
+        public static float assumedBTdelay = 0.050f;
 
         /// <summary>
         /// Returns the Cybershoes Input rotated relative to the HMD.
+        /// Need to call this each rendered frame
         /// </summary>
         /// <param name="hmdForward">The rotation of the HMD in world space.</param>
         /// <returns></returns>
-        public static Vector2 GetRotatedShoeVector(Quaternion hmdForward)
+        public static Vector2 GetRotatedShoeVector(Quaternion hmdForward) //call this each frame
         {
             Vector2 cybershoesInputAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.Gamepad);
+            
+            hmdForward_frames[framesIndex] = hmdForward.eulerAngles.y;
+            timeStamp_frames[framesIndex] = Time.time;
+            framesIndex++; if (framesIndex > 7) framesIndex = 0;
 
-            if(!Mathf.Approximately(cybershoesInputAxis.magnitude, cybershoesInputAxisPrevious.magnitude))
-            {
-                lastBTupdateTook = Time.time - lastBTUpdateTime;
-                lastBTUpdateTime = Time.time; //reset
-            }
-
-            if (Mathf.Approximately(cybershoesInputAxis.x, 0) || !Mathf.Approximately(cybershoesInputAxis.magnitude, cybershoesInputAxisPrevious.magnitude))
+            if (!Mathf.Approximately(cybershoesInputAxis.magnitude, cybershoesInputAxisPrevious.magnitude)) //BT update came
             {
                 cybershoesInputAxisPrevious = cybershoesInputAxis;
-                hmdForwardPrevious = hmdForward; //blickrichtung zum zeitpunkt des empfangs des BT pakets
-                                                 //hmdForwardPrevious = hmdFWDPreviousFrames.Peek();
-            }
-            else
-            {
-                //float diffSinceBTUpdate = playerForward.eulerAngles.y - hmdFWDPreviousFrames.Peek().eulerAngles.y;
+                float timeNow = Time.time;
+                float timeMin = 1000;
+                lastBTupdateTook = timeNow - lastBTUpdateTime;
+                lastBTUpdateTime = timeNow; //reset
 
-                float diffSinceBTUpdate = hmdForward.eulerAngles.y - hmdForwardPrevious.eulerAngles.y;
+                for (int i = 0; i < 8; i++)
+                {
+                    float challengeTimeMin = Mathf.Abs(timeNow - timeStamp_frames[i] - assumedBTdelay);
+                    if (challengeTimeMin < timeMin)
+                    {
+                        timeMin = challengeTimeMin;
+                        minIndex = i;
+                    }
+                }
+                hmdForward_relevantFrame = hmdForward_frames[minIndex];              
+            }
+            if (!Mathf.Approximately(cybershoesInputAxis.x, 0))
+            {
+                float diffSinceBTUpdate = hmdForward.eulerAngles.y - hmdForward_relevantFrame;
                 cybershoesInputAxis = RotateVector(cybershoesInputAxis, diffSinceBTUpdate);
             }
-
-
-            //hmdFWDPreviousFrames.Enqueue(hmdForward);
-
-            //if (hmdFWDPreviousFrames.Count >= pastFrameAmount)
-            //{
-            //    hmdFWDPreviousFrames.Dequeue();
-            //}
-
             return cybershoesInputAxis;
         }
 

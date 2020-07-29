@@ -19336,8 +19336,8 @@ MonoBehaviour:
   - {fileID: 1313504155838224025}
   - {fileID: 5932087179579538602}
   power: 5.5
-  detonationTime: 35
-  panicTime: 15
+  detonationTime: 70
+  panicTime: 20
   fuseEndPosY: -0.055
   fuse: {fileID: 2386338273256695551}
   fireParticles: {fileID: 2444412755200277549}
@@ -19345,7 +19345,7 @@ MonoBehaviour:
   diffuseClip: {fileID: 8300000, guid: bfa8d6faf5afc5a4496cd0fee70582e3, type: 3}
   explosionClip: {fileID: 8300000, guid: 7eb4d74d9df0165489de5574d734b493, type: 3}
   panicTrack: {fileID: 8300000, guid: b6eae0f38f235514d9c3027ca95eecc7, type: 3}
-  panicVolume: 0.7
+  panicVolume: 1
 --- !u!82 &1122960573360178013
 AudioSource:
   m_ObjectHideFlags: 0

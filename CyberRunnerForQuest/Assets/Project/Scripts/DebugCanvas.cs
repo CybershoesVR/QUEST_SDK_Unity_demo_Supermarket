@@ -23,37 +23,13 @@ public class DebugCanvas : MonoBehaviour
     private void Update()
     {
         Vector2 input = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.Gamepad);
-
         SetX(input.x);
         SetY(input.y);
 
+        //jumpText.text = $"Pinch R: {rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Index):0.00}";
+        //jumpText.text = $"button2: {OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.Gamepad)}";
+        jumpText.text = $"Jump: {OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.Gamepad)}";
         lastBTUpdateText.text = $"BT Timeout: {CybershoesInput.lastBTupdateTook:0.000}";
-
-        jumpText.text = $"Pinch R: {rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Index):0.00}";
-
-        /*  //FOR UPDATE DETECTION
-        if (OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.Gamepad) != lastInput)
-        {
-            if (counter < counterMax)
-            {
-                counter++;
-            }
-            else
-            {
-                counter = 0;
-            }
-        }
-        jumpText.text = $"Counter: {counter:0}";
-        lastInput = OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.Gamepad);
-
-        //For displaying button TWO
-        jumpText.text = $"button2: {OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.Gamepad)}";
-        */
-
-        //SetJump(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.Gamepad));
-        //float strengthLeft = GetLeftGrip();
-        //float strengthRight = GetRightGrip();
-        //pinchText.text = $"Grip: L {strengthLeft:0.0} R {strengthRight:0.0}";
     }
 
     void SetX(float x)
@@ -66,10 +42,6 @@ public class DebugCanvas : MonoBehaviour
         yText.text = $"Y: {y:0.00}";
     }
 
-    void SetJump(bool jump)
-    {
-        jumpText.text = $"Jump: {jump}";
-    }
 
     float GetLeftGrip()
     {

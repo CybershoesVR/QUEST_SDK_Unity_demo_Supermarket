@@ -53768,6 +53768,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 207957567, guid: d53299969c48d1c48810a429aa877079, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 207957567, guid: d53299969c48d1c48810a429aa877079, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 207957567, guid: d53299969c48d1c48810a429aa877079, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.068
+      objectReference: {fileID: 0}
     - target: {fileID: 263236968, guid: d53299969c48d1c48810a429aa877079, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -53784,6 +53796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OVRPlayerController
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619553208170271511, guid: d53299969c48d1c48810a429aa877079,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7619553208170271514, guid: d53299969c48d1c48810a429aa877079,
         type: 3}
@@ -53839,6 +53856,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619553208170271515, guid: d53299969c48d1c48810a429aa877079,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d53299969c48d1c48810a429aa877079, type: 3}

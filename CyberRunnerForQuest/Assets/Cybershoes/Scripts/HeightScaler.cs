@@ -13,7 +13,7 @@ namespace Cybershoes
         private float maxOffset;
         private float duckMax;
         private float duckMin;
-
+        public float boostHeightScaling = 0.05f; //0.00f is no boost 0.45f is max boost
         //INIT FUNCTIONS
         #region
 
@@ -105,11 +105,12 @@ namespace Cybershoes
             }
             else if (hmdTransform.localPosition.y < duckMin)
             {
-                return 0.0f;
+                //return 0.0f;
+                return MapClamped(hmdTransform.localPosition.y, 0, duckMin, 0, duckMin - boostHeightScaling) - hmdTransform.localPosition.y;
             }
             else if (hmdTransform.localPosition.y < duckMax)
             {
-                return MapClamped(hmdTransform.localPosition.y, duckMin, duckMax, duckMin, duckMax + maxOffset) - hmdTransform.localPosition.y;
+                return MapClamped(hmdTransform.localPosition.y, duckMin, duckMax, duckMin - boostHeightScaling, duckMax + maxOffset) - hmdTransform.localPosition.y;
             }
             else
             {
